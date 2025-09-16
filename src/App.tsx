@@ -1,8 +1,13 @@
+import React from "react";
 import { useRef, useState, useEffect } from "react";
 import HTMLFlipBook from "react-pageflip";
 import cover from "./cover.jpg";
+import closingCover from "./closing-cover.jpg";
+import limpid from "./limpid.png";
 import PageMarkers from "./components/page-markers/PageMarkers";
 import ArrowNavigation from "./components/arrow-navigation/ArrowNavigation";
+import { FiMail, FiGithub, FiLinkedin, FiBook } from "react-icons/fi";
+import SkillBar from "./components/skill-bar/SkillBar";
 
 type PageFlipBook = {
   pageFlip: () => {
@@ -32,6 +37,36 @@ const App = () => {
   const [bookRightPadding, setBookRightPadding] = useState(animationPadding);
   const [bookLeftPadding, setBookLeftPadding] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
+
+  const pageClassname =
+    "h-[100%]  border-2 border-solid border-black bg-orange-100 text-lg px-[2.5%] justify-center z-10 font-morris h-[100%] overflow-y-auto my-scrollbar";
+  const titleClassname =
+    "text-center font-bold h-[5%] flex justify-center items-center text-2xl text-red-800 underline mt-[5%]";
+  const paragraphClassname = "text-center mt-[2.5%] text-wrap text-xl justify-center flex flex-col items-center";
+  const listParagraphClassname = "text-left mt-[2.5%] text-wrap text-xl";
+  const contactParClassname = "ml-2 text-left text-xl truncate max-w-[90%]";
+  const experienceSubtitleClassname = "text-center text-wrap text-xl";
+
+  const skills = [
+    { name: "JavaScript", value: 4 },
+    { name: "TypeScript", value: 3 },
+    { name: "React", value: 4 },
+    { name: "React Native", value: 4 },
+    { name: "Firebase", value: 4 },
+    { name: "REST APIs", value: 4 },
+    { name: "Node.js", value: 3 },
+    { name: ".NET", value: 3 },
+    { name: "C#", value: 3 },
+    { name: "Git", value: 4 },
+    { name: "Docker", value: 2 },
+    { name: "Problem Solving", value: 4 },
+    { name: "Adaptability", value: 4 },
+    { name: "Team Player", value: 4 },
+    { name: "Communication", value: 4 },
+    { name: "Time Management", value: 4 },
+    { name: "Greek (Native)", value: 5 },
+    { name: "English (B2)", value: 3 },
+  ];
 
   const onInit = () => {
     if (currentPage === 0) {
@@ -85,8 +120,13 @@ const App = () => {
   }, []);
 
   return (
-    <div className="w-svh h-svh bg-gray-300 flex justify-center items-center overflow-auto min-h-[360px] min-w-360[px]">
-      <div className="absolute z-10" style={{ top: (windowSize.height - windowSize.height * 0.8) / 2 }}>
+    <div className="w-svh h-svh flex justify-center items-center overflow-auto min-h-[360px] min-w-360[px] bg-cyan-100">
+      {/* <img src={table} alt="background" className="h-[100%] w-[100%] absolute top-0 z-0" /> */}
+
+      <div
+        className="absolute z-10"
+        style={{ top: (windowSize.height - windowSize.height * 0.8) / 2 + (portraitMode ? +25 : -25) }}
+      >
         <ArrowNavigation
           pagesLength={pagesLength}
           currentPage={currentPage}
@@ -99,13 +139,13 @@ const App = () => {
       </div>
 
       <div
-        className={`bg-gray-300 flex justify-center items-center ${
+        className={`flex justify-center items-center ${
           !portraitMode && "transition-[padding] duration-[1000ms]"
         }  overflow-hidden relative`}
         style={{ paddingRight: portraitMode ? 0 : bookRightPadding, paddingLeft: portraitMode ? 0 : bookLeftPadding }}
       >
         <HTMLFlipBook
-          key={windowSize.width}
+          key={windowSize.width + windowSize.height}
           style={{}}
           startPage={currentPage}
           size="fixed"
@@ -133,11 +173,11 @@ const App = () => {
           onFlip={onFlip}
           className=""
         >
-          <div className="bg-gray-300 pt-14">
+          <div className="pt-20 ">
             <img src={cover} alt="cover" className="h-[100%] w-[100%] border-solid border-black border-2" />
           </div>
 
-          <div className="pt-14">
+          <div className="pt-20">
             {portraitMode ? null : (
               <PageMarkers
                 pagesLength={pagesLength}
@@ -148,9 +188,9 @@ const App = () => {
               />
             )}
 
-            <div className="h-[100%]  border-2 border-solid border-black bg-orange-100 font-serif text-lg p-[2.5%] justify-center z-10">
-              <p className=" text-center font-bold h-[5%] flex justify-center items-center">About me</p>
-              <p className="text-center mt-[5%] text-wrap overflow-y-auto h-[90%] my-scrollbar ">
+            <div className={pageClassname}>
+              <p className={titleClassname}>About me</p>
+              <p className={paragraphClassname}>
                 I’m Christos Kapouranis, a software developer from Greece with a background in Automation Engineering and a
                 passion for building user-focused applications. I specialize in React and React Native with experience across
                 the full development lifecycle, from designing intuitive interfaces to deploying scalable solutions. My
@@ -158,10 +198,74 @@ const App = () => {
                 tracker available on the Play Store. I enjoy exploring new technologies, solving real-world problems through
                 code and continuously expanding my skills in modern software development.
               </p>
+
+              <p className={titleClassname}>Contact & Links</p>
+              <div className="flex flex-row items-center mt-2">
+                <FiMail size={25} />
+                <p className={contactParClassname}>xristos.kapoura@gmail.com</p>
+              </div>
+              <div className="flex flex-row items-center mt-2">
+                <FiLinkedin size={25} />
+                <p
+                  className={`${contactParClassname} hover:cursor-pointer hover:underline`}
+                  onClick={() => {
+                    window.open(
+                      "https://www.linkedin.com/in/christos-kapouranis-6a07b528a",
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
+                  }}
+                >
+                  https://www.linkedin.com/in/christos-kapouranis-6a07b528a
+                </p>
+              </div>
+              <div className="flex flex-row items-center mt-2">
+                <FiGithub size={25} />
+                <p
+                  className={`${contactParClassname} hover:cursor-pointer hover:underline`}
+                  onClick={() => {
+                    window.open("https://github.com/Chrkapouranis", "_blank", "noopener,noreferrer");
+                  }}
+                >
+                  https://github.com/Chrkapouranis
+                </p>
+              </div>
+
+              <div className="flex flex-row items-center mt-2">
+                <img src={limpid} alt="limpid" className="h-[25px] w-[25px]" />
+                <p
+                  className={`${contactParClassname} hover:cursor-pointer hover:underline`}
+                  onClick={() => {
+                    window.open(
+                      "https://play.google.com/store/apps/details?id=com.kapplications.waterreminder&hl=en",
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
+                  }}
+                >
+                  Limpid: Water Reminder
+                </p>
+              </div>
+
+              <div className="flex flex-row items-center mt-2">
+                <FiBook size={25} />
+                <p
+                  className={`${contactParClassname} hover:cursor-pointer hover:underline`}
+                  onClick={() => {
+                    window.open(
+                      "https://dev.to/christos_kapouranis/i-built-my-first-app-water-reminder-with-react-native-heres-my-journey-2l7g",
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
+                  }}
+                >
+                  Article about Limpid - Dev.to
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="pt-14">
+          <div className="pt-20">
             {portraitMode ? null : (
               <PageMarkers
                 pagesLength={pagesLength}
@@ -172,13 +276,42 @@ const App = () => {
               />
             )}
 
-            <div className="h-[100%]  border-2 border-solid border-black bg-orange-100 font-serif text-lg p-[2.5%] justify-center z-10">
-              <p className=" text-center font-bold h-[5%] flex justify-center items-center">About me</p>
-              <p className="text-center mt-[5%] text-wrap overflow-y-auto h-[90%] my-scrollbar ">bbb</p>
+            <div className={pageClassname}>
+              <p className={titleClassname}>Experience</p>
+              <p className={`${paragraphClassname} font-semibold`}>Freelance | 2023 - Today</p>
+              <p className={`${experienceSubtitleClassname}`}>Personal Project | Limpid: Water Reminder | Play Store</p>
+              <ul className={listParagraphClassname}>
+                <li>· Developed a cross-platform hydration tracking app with personalized reminders and progress charts.</li>
+                <li>
+                  · Led the full development lifecycle, gaining practical experience in programming and project management.
+                </li>
+                <li>· Utilized React, React Native, Firebase, and AdMob to build and deploy the application efficiently.</li>
+              </ul>
+
+              <p className={`${paragraphClassname} font-semibold`}>Front End Developer | 2023-2025</p>
+              <p className={`${experienceSubtitleClassname}`}>Olympia Electronics, Aiginio</p>
+              <ul className={listParagraphClassname}>
+                <li>
+                  · Contributed across the full development lifecycle, from design to maintenance, for both public-facing and
+                  internal applications.
+                </li>
+                <li>
+                  · Developed interactive dashboards for internal use, applying modern React principles to ensure clarity,
+                  modularity and maintainability.
+                </li>
+                <li>
+                  · Worked extensively on a smart home mobile application, building features across the stack including UI,
+                  cloud integration and real-time functionality.
+                </li>
+                <li>
+                  · Utilized technologies such as React, React Native, .NET Entity Framework and Node.js; also explored
+                  Docker, MongoDB, PostgreSQL, Redis and API deployment.
+                </li>
+              </ul>
             </div>
           </div>
 
-          <div className="pt-14">
+          <div className="pt-20">
             {portraitMode ? null : (
               <PageMarkers
                 pagesLength={pagesLength}
@@ -189,13 +322,34 @@ const App = () => {
               />
             )}
 
-            <div className="h-[100%]  border-2 border-solid border-black bg-orange-100 font-serif text-lg p-[2.5%] justify-center z-10">
-              <p className=" text-center font-bold h-[5%] flex justify-center items-center">About me</p>
-              <p className="text-center mt-[5%] text-wrap overflow-y-auto h-[90%] my-scrollbar ">ccc</p>
+            <div className={pageClassname}>
+              <p className={titleClassname}>Education</p>
+              <p className={`${paragraphClassname} font-semibold`}>IHU Automation Department Thessaloniki</p>
+              <p className={`${experienceSubtitleClassname}`}>Bachelor in Automation Engineering</p>
+              <ul className={listParagraphClassname}>
+                <li>· Specialized in automation systems, robotics, and software development.</li>
+                <li>
+                  · Strong background in programming and algorithm design (C++/C<span className="font-serif">#</span>).
+                </li>
+                <li>· Hands-on experience with industrial automation tools like PLC programming and SCADA systems.</li>
+                <li>· Solid understanding of D/A electronics, microcontrollers and embedded systems.</li>
+              </ul>
+
+              <p className={`${paragraphClassname} font-semibold`}>Online Courses & Books</p>
+              <ul className={listParagraphClassname}>
+                <li>· The Complete React Native + Hooks Course - Udemy</li>
+                <li>· React – The Complete Guide 2023 (incl. React Router & Redux) – Udemy</li>
+                <li>
+                  · Learn to Code by Making Games - Complete C<span className="font-serif">#</span> Unity Developer - Udemy
+                </li>
+                <li>· Introduction to 3D Animation with Autodesk Maya - Udemy</li>
+                <li>· C++ Tutorial for Complete Beginners – Udemy</li>
+                <li>· The Arduino Starter’s Kit Project Book</li>
+              </ul>
             </div>
           </div>
 
-          <div className="pt-14">
+          <div className="pt-20">
             {portraitMode ? null : (
               <PageMarkers
                 pagesLength={pagesLength}
@@ -206,14 +360,22 @@ const App = () => {
               />
             )}
 
-            <div className="h-[100%]  border-2 border-solid border-black bg-orange-100 font-serif text-lg p-[2.5%] justify-center z-10">
-              <p className=" text-center font-bold h-[5%] flex justify-center items-center">About me</p>
-              <p className="text-center mt-[5%] text-wrap overflow-y-auto h-[90%] my-scrollbar ">ddd</p>
+            <div className={pageClassname}>
+              <p className={titleClassname}>Skills</p>
+              <div className={paragraphClassname}>
+                {skills.map((_, index) => {
+                  return (
+                    <React.Fragment key={index}>
+                      <SkillBar skillNumber={skills[index].value} title={skills[index].name} />
+                    </React.Fragment>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
-          <div className="pt-14">
-            <p className="bg-black h-[100%]"></p>
+          <div className="pt-20 ">
+            <img src={closingCover} alt="cover" className="h-[100%] w-[100%] border-solid border-black border-2" />
           </div>
         </HTMLFlipBook>
       </div>

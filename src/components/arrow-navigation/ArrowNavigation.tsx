@@ -31,8 +31,10 @@ const ArrowNavigation: React.FC<ArrowNavigationProps> = ({
       <button
         type="button"
         disabled={disabled}
-        onClick={onClick}
-        className={`${!disabled && "hover:scale-125 transition-transform duration-300"} bg-gray-300 rounded-2xl`}
+        onClick={() => {
+          onClick();
+        }}
+        className={`${!disabled && "hover:scale-125"}active:scale-100 rounded-2xl bg-white`}
       >
         {icon}
       </button>
