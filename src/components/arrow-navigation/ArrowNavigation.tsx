@@ -42,7 +42,7 @@ const ArrowNavigation: React.FC<ArrowNavigationProps> = ({
   portraitMode,
 }) => {
   return (
-    <div className="w-40 justify-between flex">
+    <div className="w-48 justify-between flex px-2">
       <ButtonPattern
         disabled={currentPage <= 0}
         onClick={portraitMode ? turnToPrev : flipToPrev}

@@ -39,9 +39,9 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const pageClassname =
-    "bg-paper bg-center bg-cover pb-[2.5%] h-[100%] border-2 border-solid border-black text-lg px-[2.5%] justify-center z-10 h-[100%] overflow-y-auto my-scrollbar";
+    "bg-paper bg-center bg-cover pb-[5%] h-[100%] border-2 border-solid border-black text-lg px-[5%] justify-center z-10 h-[100%] overflow-y-auto my-scrollbar";
   const titleClassname =
-    "text-center font-bold h-[5%] flex justify-center items-center text-2xl text-red-800 underline font-morris mt-[2.5%]";
+    "text-center font-bold h-[5%] flex justify-center items-center text-2xl text-red-800 underline font-morris mt-[5%]";
   const paragraphClassname =
     "text-center mt-[2.5%] text-wrap text-xl justify-center flex flex-col items-center relative";
   const listParagraphClassname = "text-left mt-[2.5%] text-wrap text-xl";
@@ -121,11 +121,11 @@ const App = () => {
   }, []);
 
   return (
-    <div className="relative w-svh h-svh flex justify-center items-center overflow-auto min-h-[360px] min-w-360[px] rounded-none bg-[radial-gradient(circle,_#b88457_75%,_#c99568_85%,_black_100%)]">
+    <div className="relative w-svh h-svh flex justify-center items-center overflow-auto min-h-[400px] min-w-[360px] rounded-none bg-[radial-gradient(circle,_#b88457_80%,_#c99568_90%,_black_100%)]">
       <div
-        className="absolute z-10"
+        className="absolute z-10 overflow-hidden w-56 justify-center flex"
         style={{
-          bottom: (windowSize.height - windowSize.height * 0.8) / 2 - 25,
+          bottom: (windowSize.height - windowSize.height * 0.8) / 2 + (portraitMode ? -30 : -40),
         }}
       >
         <ArrowNavigation
@@ -154,7 +154,7 @@ const App = () => {
           startPage={currentPage}
           size="fixed"
           width={portraitMode ? windowSize.width * 0.85 : windowSize.width * 0.35}
-          height={windowSize.height * 0.8}
+          height={windowSize.height * 0.85}
           minWidth={0}
           maxWidth={0}
           minHeight={0}
@@ -205,7 +205,7 @@ const App = () => {
                 lifecycle, from designing intuitive interfaces to deploying scalable solutions. My
                 projects range from smart home applications to mobile apps like my personal project
                 Limpid, a hydration tracker available on the Play Store. I enjoy exploring new
-                technologies, solving real-world problems through code and continuously expanding my
+                technologies, solving real world problems through code and continuously expanding my
                 skills in modern software development.
               </p>
 

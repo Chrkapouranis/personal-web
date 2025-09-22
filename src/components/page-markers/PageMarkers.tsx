@@ -27,7 +27,7 @@ const PageMarkers: React.FC<PageMarkersProps> = ({
   const isOdd = (num: number) => num % 2 !== 0;
 
   const commonParentClsName =
-    "scale-x-115 w-10 h-20 relative flex items-center justify-center overflow-hidden";
+    "scale-x-115 w-10 h-16 relative flex items-center justify-center overflow-hidden";
 
   const markers =
     pageNumber === 0
@@ -110,9 +110,9 @@ const PageMarkers: React.FC<PageMarkersProps> = ({
 
   return (
     <div
-      className={`h-20 px-4 flex gap-2 ${
+      className={`h-16 px-4 flex gap-2 ${
         !isOdd(pageNumber) && "justify-end"
-      } transition-all duration-[0ms] absolute -top-0 w-[100%] ${showBg && "bg-[#b88457]"}`}
+      } transition-all duration-[0ms] absolute top-4 w-[100%] ${showBg && "bg-[#b88457]"}`}
     >
       {markers}
     </div>
