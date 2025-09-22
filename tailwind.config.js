@@ -3,6 +3,11 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        paper: "url('rough-textured-wall.jpg')",
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      },
+
       fontFamily: {
         morris: ["MorrisRoman", "sans-serif"],
       },

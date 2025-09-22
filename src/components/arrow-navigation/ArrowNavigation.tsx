@@ -1,5 +1,5 @@
-import React from "react";
-import { FiArrowRightCircle, FiArrowLeftCircle } from "react-icons/fi";
+import React, { memo } from "react";
+import { GiBroadsword } from "react-icons/gi";
 
 interface ArrowNavigationProps {
   pagesLength: number;
@@ -17,6 +17,21 @@ interface ButtonPatternProps {
   icon: React.ReactElement;
 }
 
+const ButtonPattern: React.FC<ButtonPatternProps> = memo(({ disabled, onClick, icon }) => {
+  return (
+    <button
+      type="button"
+      disabled={disabled}
+      onClick={onClick}
+      className={`${
+        !disabled && "hover:scale-125"
+      } active:scale-100 rounded-2xl transition-all duration-100`}
+    >
+      {icon}
+    </button>
+  );
+});
+
 const ArrowNavigation: React.FC<ArrowNavigationProps> = ({
   pagesLength,
   currentPage,
@@ -26,36 +41,21 @@ const ArrowNavigation: React.FC<ArrowNavigationProps> = ({
   flipToNext,
   portraitMode,
 }) => {
-  const ButtonPattern: React.FC<ButtonPatternProps> = ({ disabled, onClick, icon }) => {
-    return (
-      <button
-        type="button"
-        disabled={disabled}
-        onClick={() => {
-          onClick();
-        }}
-        className={`${!disabled && "hover:scale-125"}active:scale-100 rounded-2xl bg-white`}
-      >
-        {icon}
-      </button>
-    );
-  };
-
   return (
-    <div className="w-24 justify-between flex ">
+    <div className="w-40 justify-between flex">
       <ButtonPattern
         disabled={currentPage <= 0}
         onClick={portraitMode ? turnToPrev : flipToPrev}
-        icon={<FiArrowLeftCircle size={34} opacity={currentPage <= 0 ? 0.3 : 1} />}
+        icon={<GiBroadsword size={60} opacity={currentPage <= 0 ? 0.3 : 1} className="rotate-[-135deg]"/>}
       />
 
       <ButtonPattern
         disabled={currentPage >= pagesLength}
         onClick={portraitMode ? turnToNext : flipToNext}
-        icon={<FiArrowRightCircle size={34} opacity={currentPage >= pagesLength ? 0.3 : 1} />}
+        icon={<GiBroadsword size={60} opacity={currentPage >= pagesLength ? 0.3 : 1} className="rotate-[45deg]"/>}
       />
     </div>
   );
 };
 
-export default ArrowNavigation;
+export default memo(ArrowNavigation);

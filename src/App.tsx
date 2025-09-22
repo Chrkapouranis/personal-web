@@ -39,10 +39,11 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const pageClassname =
-    "h-[100%]  border-2 border-solid border-black bg-orange-100 text-lg px-[2.5%] justify-center z-10 font-morris h-[100%] overflow-y-auto my-scrollbar";
+    "bg-paper bg-center bg-cover pb-[2.5%] h-[100%] border-2 border-solid border-black text-lg px-[2.5%] justify-center z-10 h-[100%] overflow-y-auto my-scrollbar";
   const titleClassname =
-    "text-center font-bold h-[5%] flex justify-center items-center text-2xl text-red-800 underline mt-[5%]";
-  const paragraphClassname = "text-center mt-[2.5%] text-wrap text-xl justify-center flex flex-col items-center";
+    "text-center font-bold h-[5%] flex justify-center items-center text-2xl text-red-800 underline font-morris mt-[2.5%]";
+  const paragraphClassname =
+    "text-center mt-[2.5%] text-wrap text-xl justify-center flex flex-col items-center relative";
   const listParagraphClassname = "text-left mt-[2.5%] text-wrap text-xl";
   const contactParClassname = "ml-2 text-left text-xl truncate max-w-[90%]";
   const experienceSubtitleClassname = "text-center text-wrap text-xl";
@@ -120,12 +121,12 @@ const App = () => {
   }, []);
 
   return (
-    <div className="w-svh h-svh flex justify-center items-center overflow-auto min-h-[360px] min-w-360[px] bg-cyan-100">
-      {/* <img src={table} alt="background" className="h-[100%] w-[100%] absolute top-0 z-0" /> */}
-
+    <div className="relative w-svh h-svh flex justify-center items-center overflow-auto min-h-[360px] min-w-360[px] rounded-none bg-[radial-gradient(circle,_#b88457_75%,_#c99568_85%,_black_100%)]">
       <div
         className="absolute z-10"
-        style={{ top: (windowSize.height - windowSize.height * 0.8) / 2 + (portraitMode ? +25 : -25) }}
+        style={{
+          bottom: (windowSize.height - windowSize.height * 0.8) / 2 - 25,
+        }}
       >
         <ArrowNavigation
           pagesLength={pagesLength}
@@ -139,10 +140,13 @@ const App = () => {
       </div>
 
       <div
-        className={`flex justify-center items-center ${
+        className={`flex justify-center items-center pb-24 ${
           !portraitMode && "transition-[padding] duration-[1000ms]"
-        }  overflow-hidden relative`}
-        style={{ paddingRight: portraitMode ? 0 : bookRightPadding, paddingLeft: portraitMode ? 0 : bookLeftPadding }}
+        }  overflow-hidden relative h-[100%]`}
+        style={{
+          paddingRight: portraitMode ? 0 : bookRightPadding,
+          paddingLeft: portraitMode ? 0 : bookLeftPadding,
+        }}
       >
         <HTMLFlipBook
           key={windowSize.width + windowSize.height}
@@ -174,7 +178,11 @@ const App = () => {
           className=""
         >
           <div className="pt-20 ">
-            <img src={cover} alt="cover" className="h-[100%] w-[100%] border-solid border-black border-2" />
+            <img
+              src={cover}
+              alt="cover"
+              className="h-[100%] w-[100%] border-solid border-black border-2"
+            />
           </div>
 
           <div className="pt-20">
@@ -191,12 +199,14 @@ const App = () => {
             <div className={pageClassname}>
               <p className={titleClassname}>About me</p>
               <p className={paragraphClassname}>
-                I’m Christos Kapouranis, a software developer from Greece with a background in Automation Engineering and a
-                passion for building user-focused applications. I specialize in React and React Native with experience across
-                the full development lifecycle, from designing intuitive interfaces to deploying scalable solutions. My
-                projects range from smart home applications to mobile apps like my personal project Limpid, a hydration
-                tracker available on the Play Store. I enjoy exploring new technologies, solving real-world problems through
-                code and continuously expanding my skills in modern software development.
+                I’m Christos Kapouranis, a software developer from Greece with a background in
+                Automation Engineering and a passion for building user focused applications. I
+                specialize in React and React Native with experience across the full development
+                lifecycle, from designing intuitive interfaces to deploying scalable solutions. My
+                projects range from smart home applications to mobile apps like my personal project
+                Limpid, a hydration tracker available on the Play Store. I enjoy exploring new
+                technologies, solving real-world problems through code and continuously expanding my
+                skills in modern software development.
               </p>
 
               <p className={titleClassname}>Contact & Links</p>
@@ -224,7 +234,11 @@ const App = () => {
                 <p
                   className={`${contactParClassname} hover:cursor-pointer hover:underline`}
                   onClick={() => {
-                    window.open("https://github.com/Chrkapouranis", "_blank", "noopener,noreferrer");
+                    window.open(
+                      "https://github.com/Chrkapouranis",
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
                   }}
                 >
                   https://github.com/Chrkapouranis
@@ -279,33 +293,44 @@ const App = () => {
             <div className={pageClassname}>
               <p className={titleClassname}>Experience</p>
               <p className={`${paragraphClassname} font-semibold`}>Freelance | 2023 - Today</p>
-              <p className={`${experienceSubtitleClassname}`}>Personal Project | Limpid: Water Reminder | Play Store</p>
+              <p className={`${experienceSubtitleClassname}`}>
+                Personal Project | Limpid: Water Reminder | Play Store
+              </p>
               <ul className={listParagraphClassname}>
-                <li>· Developed a cross-platform hydration tracking app with personalized reminders and progress charts.</li>
                 <li>
-                  · Led the full development lifecycle, gaining practical experience in programming and project management.
+                  · Developed a cross-platform hydration tracking app with personalized reminders
+                  and progress charts.
                 </li>
-                <li>· Utilized React, React Native, Firebase, and AdMob to build and deploy the application efficiently.</li>
+                <li>
+                  · Led the full development lifecycle, gaining practical experience in programming
+                  and project management.
+                </li>
+                <li>
+                  · Utilized React, React Native, Firebase, and AdMob to build and deploy the
+                  application efficiently.
+                </li>
               </ul>
 
-              <p className={`${paragraphClassname} font-semibold`}>Front End Developer | 2023-2025</p>
+              <p className={`${paragraphClassname} font-semibold`}>
+                Front End Developer | 2023-2025
+              </p>
               <p className={`${experienceSubtitleClassname}`}>Olympia Electronics, Aiginio</p>
               <ul className={listParagraphClassname}>
                 <li>
-                  · Contributed across the full development lifecycle, from design to maintenance, for both public-facing and
-                  internal applications.
+                  · Contributed across the full development lifecycle, from design to maintenance,
+                  for both public-facing and internal applications.
                 </li>
                 <li>
-                  · Developed interactive dashboards for internal use, applying modern React principles to ensure clarity,
-                  modularity and maintainability.
+                  · Developed interactive dashboards for internal use, applying modern React
+                  principles to ensure clarity, modularity and maintainability.
                 </li>
                 <li>
-                  · Worked extensively on a smart home mobile application, building features across the stack including UI,
-                  cloud integration and real-time functionality.
+                  · Worked extensively on a smart home mobile application, building features across
+                  the stack including UI, cloud integration and real-time functionality.
                 </li>
                 <li>
-                  · Utilized technologies such as React, React Native, .NET Entity Framework and Node.js; also explored
-                  Docker, MongoDB, PostgreSQL, Redis and API deployment.
+                  · Utilized technologies such as React, React Native, .NET Entity Framework and
+                  Node.js; also explored Docker, MongoDB, PostgreSQL, Redis and API deployment.
                 </li>
               </ul>
             </div>
@@ -324,15 +349,23 @@ const App = () => {
 
             <div className={pageClassname}>
               <p className={titleClassname}>Education</p>
-              <p className={`${paragraphClassname} font-semibold`}>IHU Automation Department Thessaloniki</p>
+              <p className={`${paragraphClassname} font-semibold`}>
+                IHU Automation Department Thessaloniki
+              </p>
               <p className={`${experienceSubtitleClassname}`}>Bachelor in Automation Engineering</p>
               <ul className={listParagraphClassname}>
                 <li>· Specialized in automation systems, robotics, and software development.</li>
                 <li>
-                  · Strong background in programming and algorithm design (C++/C<span className="font-serif">#</span>).
+                  · Strong background in programming and algorithm design (C++/C
+                  <span className="font-serif">#</span>).
                 </li>
-                <li>· Hands-on experience with industrial automation tools like PLC programming and SCADA systems.</li>
-                <li>· Solid understanding of D/A electronics, microcontrollers and embedded systems.</li>
+                <li>
+                  · Hands-on experience with industrial automation tools like PLC programming and
+                  SCADA systems.
+                </li>
+                <li>
+                  · Solid understanding of D/A electronics, microcontrollers and embedded systems.
+                </li>
               </ul>
 
               <p className={`${paragraphClassname} font-semibold`}>Online Courses & Books</p>
@@ -340,7 +373,8 @@ const App = () => {
                 <li>· The Complete React Native + Hooks Course - Udemy</li>
                 <li>· React – The Complete Guide 2023 (incl. React Router & Redux) – Udemy</li>
                 <li>
-                  · Learn to Code by Making Games - Complete C<span className="font-serif">#</span> Unity Developer - Udemy
+                  · Learn to Code by Making Games - Complete C<span className="font-serif">#</span>{" "}
+                  Unity Developer - Udemy
                 </li>
                 <li>· Introduction to 3D Animation with Autodesk Maya - Udemy</li>
                 <li>· C++ Tutorial for Complete Beginners – Udemy</li>
@@ -366,7 +400,11 @@ const App = () => {
                 {skills.map((_, index) => {
                   return (
                     <React.Fragment key={index}>
-                      <SkillBar skillNumber={skills[index].value} title={skills[index].name} />
+                      <SkillBar
+                        skillNumber={skills[index].value}
+                        title={skills[index].name}
+                        currentPage={currentPage}
+                      />
                     </React.Fragment>
                   );
                 })}
@@ -375,7 +413,11 @@ const App = () => {
           </div>
 
           <div className="pt-20 ">
-            <img src={closingCover} alt="cover" className="h-[100%] w-[100%] border-solid border-black border-2" />
+            <img
+              src={closingCover}
+              alt="cover"
+              className="h-[100%] w-[100%] border-solid border-black border-2"
+            />
           </div>
         </HTMLFlipBook>
       </div>
