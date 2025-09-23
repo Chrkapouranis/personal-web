@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/personal-web/static/css/main.14dbc80e.css",
-    "main.js": "/personal-web/static/js/main.f048658a.js",
+    "main.css": "/personal-web/static/css/main.56c1128b.css",
+    "main.js": "/personal-web/static/js/main.7ddb1dc9.js",
     "static/js/453.76da40c9.chunk.js": "/personal-web/static/js/453.76da40c9.chunk.js",
     "static/media/rough-textured-wall.jpg": "/personal-web/static/media/rough-textured-wall.14418966266519cb23e2.jpg",
     "static/media/closing-cover.jpg": "/personal-web/static/media/closing-cover.6e521d210aaf8cb47bcf.jpg",
@@ -10,12 +10,12 @@
     "static/media/limpid.png": "/personal-web/static/media/limpid.31e12c01db63cf84e629.png",
     "static/media/MorrisRoman-Black.woff2": "/personal-web/static/media/MorrisRoman-Black.f94046cf7e09fe44335b.woff2",
     "index.html": "/personal-web/index.html",
-    "main.14dbc80e.css.map": "/personal-web/static/css/main.14dbc80e.css.map",
-    "main.f048658a.js.map": "/personal-web/static/js/main.f048658a.js.map",
+    "main.56c1128b.css.map": "/personal-web/static/css/main.56c1128b.css.map",
+    "main.7ddb1dc9.js.map": "/personal-web/static/js/main.7ddb1dc9.js.map",
     "453.76da40c9.chunk.js.map": "/personal-web/static/js/453.76da40c9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.14dbc80e.css",
-    "static/js/main.f048658a.js"
+    "static/css/main.56c1128b.css",
+    "static/js/main.7ddb1dc9.js"
   ]
 }
