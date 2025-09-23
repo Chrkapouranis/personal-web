@@ -4,7 +4,6 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        paper: "url('rough-textured-wall.jpg')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
 

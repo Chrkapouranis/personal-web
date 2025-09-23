@@ -8,6 +8,7 @@ import PageMarkers from "./components/page-markers/PageMarkers";
 import ArrowNavigation from "./components/arrow-navigation/ArrowNavigation";
 import { FiMail, FiGithub, FiLinkedin, FiBook } from "react-icons/fi";
 import SkillBar from "./components/skill-bar/SkillBar";
+import paper from "./rough-textured-wall.jpg";
 
 type PageFlipBook = {
   pageFlip: () => {
@@ -39,7 +40,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const pageClassname =
-    "bg-paper bg-center bg-cover pb-[5%] h-[100%] border-2 border-solid border-black text-lg px-[5%] justify-center z-10 h-[100%] overflow-y-auto my-scrollbar";
+    "bg-center bg-cover pb-[5%] h-[100%] border-2 border-solid border-black text-lg px-[5%] justify-center z-10 h-[100%] overflow-y-auto my-scrollbar";
   const titleClassname =
     "text-center font-bold h-[5%] flex justify-center items-center text-2xl text-red-800 underline font-morris mt-[5%]";
   const paragraphClassname =
@@ -196,7 +197,7 @@ const App = () => {
               />
             )}
 
-            <div className={pageClassname}>
+            <div className={pageClassname} style={{ backgroundImage: `url(${paper})` }}>
               <p className={titleClassname}>About me</p>
               <p className={paragraphClassname}>
                 I’m Christos Kapouranis, a software developer from Greece with a background in
@@ -290,7 +291,7 @@ const App = () => {
               />
             )}
 
-            <div className={pageClassname}>
+            <div className={pageClassname} style={{ backgroundImage: `url(${paper})` }}>
               <p className={titleClassname}>Experience</p>
               <p className={`${paragraphClassname} font-semibold`}>Freelance | 2023 - Today</p>
               <p className={`${experienceSubtitleClassname}`}>
@@ -347,7 +348,7 @@ const App = () => {
               />
             )}
 
-            <div className={pageClassname}>
+            <div className={pageClassname} style={{ backgroundImage: `url(${paper})` }}>
               <p className={titleClassname}>Education</p>
               <p className={`${paragraphClassname} font-semibold`}>
                 IHU Automation Department Thessaloniki
@@ -394,13 +395,14 @@ const App = () => {
               />
             )}
 
-            <div className={pageClassname}>
+            <div className={pageClassname} style={{ backgroundImage: `url(${paper})` }}>
               <p className={titleClassname}>Skills</p>
               <div className={paragraphClassname}>
                 {skills.map((_, index) => {
                   return (
                     <React.Fragment key={index}>
                       <SkillBar
+                        portraitMode={portraitMode}
                         skillNumber={skills[index].value}
                         title={skills[index].name}
                         currentPage={currentPage}

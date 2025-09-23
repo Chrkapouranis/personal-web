@@ -4,9 +4,10 @@ interface SkillBarProps {
   skillNumber: number;
   title: string;
   currentPage: number;
+  portraitMode: boolean;
 }
 
-const SkillBar: React.FC<SkillBarProps> = ({ skillNumber, title, currentPage }) => {
+const SkillBar: React.FC<SkillBarProps> = ({ skillNumber, title, currentPage, portraitMode }) => {
   const colors = ["bg-green-200", "bg-green-300", "bg-green-400", "bg-green-500", "bg-green-600"];
 
   const [stage, setStage] = useState(0);
@@ -14,7 +15,7 @@ const SkillBar: React.FC<SkillBarProps> = ({ skillNumber, title, currentPage }) 
   useEffect(() => {
     let interval: NodeJS.Timeout | undefined;
 
-    if (currentPage >= 3) {
+    if (portraitMode ? currentPage === 4 : currentPage >= 3) {
       interval = setInterval(() => {
         setStage((prev) => {
           if (prev < 5) {
@@ -34,7 +35,9 @@ const SkillBar: React.FC<SkillBarProps> = ({ skillNumber, title, currentPage }) 
 
   return (
     <div className="w-[100%] flex flex-row mt-[0.5%]  items-center justify-between pl-[5%] pr-[5%] relative">
-      <span className={`${title === "C#" && "font-serif"} truncate max-w-[40%] text-md`}>{title}</span>
+      <span className={`${title === "C#" && "font-serif"} truncate max-w-[40%] text-md`}>
+        {title}
+      </span>
       <div className="w-[60%] flex flex-row justify-between">
         {Array.from({ length: 5 }, (_, index) => {
           return (
