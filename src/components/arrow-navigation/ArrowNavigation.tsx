@@ -23,9 +23,9 @@ const ButtonPattern: React.FC<ButtonPatternProps> = memo(({ disabled, onClick, i
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className={`${
-        !disabled && "hover:scale-125"
-      } active:scale-100 rounded-2xl transition-all duration-100`}
+      className={`rounded-2xl transition-transform duration-100 ${
+        !disabled ? "hover:scale-125" : ""
+      } active:scale-100`}
     >
       {icon}
     </button>
@@ -41,19 +41,31 @@ const ArrowNavigation: React.FC<ArrowNavigationProps> = ({
   flipToNext,
   portraitMode,
 }) => {
-  return (
-    <div className="w-48 justify-between flex px-2">
-      <ButtonPattern
-        disabled={currentPage <= 0}
-        onClick={portraitMode ? turnToPrev : flipToPrev}
-        icon={<GiBroadsword size={60} opacity={currentPage <= 0 ? 0.3 : 1} className="rotate-[-135deg]"/>}
-      />
+  const isPrevDisabled = currentPage <= 0;
+  const isNextDisabled = currentPage >= pagesLength;
 
-      <ButtonPattern
-        disabled={currentPage >= pagesLength}
-        onClick={portraitMode ? turnToNext : flipToNext}
-        icon={<GiBroadsword size={60} opacity={currentPage >= pagesLength ? 0.3 : 1} className="rotate-[45deg]"/>}
-      />
+  const buttons = [
+    {
+      disabled: isPrevDisabled,
+      onClick: portraitMode ? turnToPrev : flipToPrev,
+      icon: (
+        <GiBroadsword size={60} opacity={isPrevDisabled ? 0.3 : 1} className="rotate-[-135deg]" />
+      ),
+    },
+    {
+      disabled: isNextDisabled,
+      onClick: portraitMode ? turnToNext : flipToNext,
+      icon: (
+        <GiBroadsword size={60} opacity={isNextDisabled ? 0.3 : 1} className="rotate-[45deg]" />
+      ),
+    },
+  ];
+
+  return (
+    <div className="w-48 flex justify-between px-2">
+      {buttons.map((btn, idx) => (
+        <ButtonPattern key={idx} {...btn} />
+      ))}
     </div>
   );
 };

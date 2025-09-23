@@ -9,46 +9,41 @@ interface SkillBarProps {
 
 const SkillBar: React.FC<SkillBarProps> = ({ skillNumber, title, currentPage, portraitMode }) => {
   const colors = ["bg-green-200", "bg-green-300", "bg-green-400", "bg-green-500", "bg-green-600"];
-
+  const maxStage = 5;
   const [stage, setStage] = useState(0);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout | undefined;
+    let interval: NodeJS.Timeout;
 
-    if (portraitMode ? currentPage === 4 : currentPage >= 3) {
+    const shouldAnimate = portraitMode ? currentPage === 4 : currentPage >= 3;
+
+    if (shouldAnimate && stage < maxStage) {
       interval = setInterval(() => {
         setStage((prev) => {
-          if (prev < 5) {
-            return prev + 1;
-          } else {
-            if (interval) clearInterval(interval);
-            return prev;
-          }
+          const next = Math.min(prev + 1, maxStage);
+          if (next === maxStage && interval) clearInterval(interval);
+          return next;
         });
       }, 500);
     }
 
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [currentPage]);
+    return () => clearInterval(interval);
+  }, [currentPage, portraitMode, stage]);
 
   return (
-    <div className="w-[100%] flex flex-row mt-[0.5%]  items-center justify-between pl-[5%] pr-[5%] relative">
-      <span className={`${title === "C#" && "font-serif"} truncate max-w-[40%] text-md`}>
+    <div className="w-full flex items-center justify-between mt-1 pl-5 pr-5 relative">
+      <span className={`truncate max-w-[40%] text-md ${title === "C#" ? "font-serif" : ""}`}>
         {title}
       </span>
-      <div className="w-[60%] flex flex-row justify-between">
-        {Array.from({ length: 5 }, (_, index) => {
-          return (
-            <div
-              key={index}
-              className={`w-[17.5%] h-2 rounded-lg ${
-                index + 1 <= skillNumber && index + 1 <= stage ? colors[index] : "bg-white"
-              } transition-colors duration-1000`}
-            />
-          );
-        })}
+      <div className="w-[60%] flex justify-between">
+        {Array.from({ length: maxStage }, (_, index) => (
+          <div
+            key={index}
+            className={`w-[17.5%] h-2 rounded-lg transition-colors duration-1000 ${
+              index + 1 <= skillNumber && index + 1 <= stage ? colors[index] : "bg-white"
+            }`}
+          />
+        ))}
       </div>
     </div>
   );
