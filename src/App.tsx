@@ -223,7 +223,7 @@ const App = () => {
                     window.open(
                       "https://www.linkedin.com/in/christos-kapouranis-6a07b528a",
                       "_blank",
-                      "noopener,noreferrer"
+                      "noopener,noreferrer",
                     );
                   }}
                 >
@@ -238,7 +238,7 @@ const App = () => {
                     window.open(
                       "https://github.com/Chrkapouranis",
                       "_blank",
-                      "noopener,noreferrer"
+                      "noopener,noreferrer",
                     );
                   }}
                 >
@@ -254,7 +254,7 @@ const App = () => {
                     window.open(
                       "https://play.google.com/store/apps/details?id=com.kapplications.waterreminder&hl=en",
                       "_blank",
-                      "noopener,noreferrer"
+                      "noopener,noreferrer",
                     );
                   }}
                 >
@@ -270,7 +270,7 @@ const App = () => {
                     window.open(
                       "https://dev.to/christos_kapouranis/i-built-my-first-app-water-reminder-with-react-native-heres-my-journey-2l7g",
                       "_blank",
-                      "noopener,noreferrer"
+                      "noopener,noreferrer",
                     );
                   }}
                 >
@@ -318,20 +318,36 @@ const App = () => {
               <p className={`${experienceSubtitleClassname}`}>Olympia Electronics, Aiginio</p>
               <ul className={listParagraphClassname}>
                 <li>
-                  · Contributed across the full development lifecycle, from design to maintenance,
-                  for both public-facing and internal applications.
+                  · Contributed across the full software development lifecycle for both public and
+                  internal applications.
                 </li>
                 <li>
-                  · Developed interactive dashboards for internal use, applying modern React
-                  principles to ensure clarity, modularity and maintainability.
+                  · Designed and developed an internal HR dashboard and API using React and .NET
+                  Entity Framework, enabling the HR team to manage candidate profiles, create and
+                  evaluate technical/knowledge tests and administer Myers–Briggs personality
+                  assessments.
                 </li>
                 <li>
-                  · Worked extensively on a smart home mobile application, building features across
-                  the stack including UI, cloud integration and real-time functionality.
+                  · Modernized a legacy Python Django application by upgrading it across multiple
+                  major versions, then rebuilt it as a modern internal dashboard in React to manage
+                  global firmware updates for company devices. Deployed the system using Docker and
+                  Nginx on a virtual machine.
                 </li>
                 <li>
-                  · Utilized technologies such as React, React Native, .NET Entity Framework and
-                  Node.js; also explored Docker, MongoDB, PostgreSQL, Redis and API deployment.
+                  · Worked extensively on a smart home mobile application, developing features
+                  across the full stack using React Native, backend APIs, databases and a custom
+                  MQTT server for real-time device communication. Managed containerization,
+                  deployment, testing, QA workflows and Firebase integration.
+                </li>
+                <li>
+                  · Built an internal automation system with a lightweight UI in vanilla JavaScript,
+                  significantly speeding up production and operational workflows for multiple
+                  departments.
+                </li>
+                <li>
+                  · Utilized and explored a broad technology stack including React, React Native,
+                  .NET Entity Framework, Node.js, Django, Docker, MariaDB, MongoDB, PostgreSQL,
+                  Redis and API deployment practices.
                 </li>
               </ul>
             </div>
